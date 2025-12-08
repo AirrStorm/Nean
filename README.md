@@ -19,7 +19,7 @@ A custom made robotic hand
 ## Wiring
 Here is a preview of the wiring:
 
-![Wiring Preview](Wiring\Diagram/Nean.png )
+![Wiring Preview](Wiring\Diagram/Nean.png)
 
 You can find the wiring diagram here:
 ```
@@ -27,3 +27,4 @@ Nean/
 ├── Wiring Diagram/
    └── Nean.png
 ```
+
