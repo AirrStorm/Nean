@@ -47,7 +47,8 @@ Nean/
 ```
 Here is a preview of the 3d model:
 
-<img width="542" height="742" alt="image" src="https://github.com/user-attachments/assets/31590a17-eba4-4c3a-80ab-cd1e640b7ce2" />
+<img width="372" height="626" alt="image" src="https://github.com/user-attachments/assets/04553a1f-a402-4ba7-b1c0-51ca77cc78db" />
+
 --- 
 
 ## Disclaimer
