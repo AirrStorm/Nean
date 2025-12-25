@@ -1,0 +1,30 @@
+ELECTRONICS,,,
+,,,
+Item No.,Quantitiy,Part Name,Source
+1,1,ESP 32,AliExpress
+2,1,PCA9685 Servo Driver,AliExpress
+3,1,DC-DC Boost Converter,AliExpress
+4,1,TP4056 Charger Module,AliExpress
+5,1,Slide Switch,Nauvitel Electronics (Local Vendor)
+6,2,18650 Li-ion Battery,Oku Electronics (Local Vendor)
+,,,
+Actuation,,,
+,,,
+Item No.,Quantity,Part Name,Source
+7,5,MG666R Servo,Alixpress
+8,1,Elastic Cord,Alixpress
+9,1,Fishing Line,Alixpress
+,,,
+Wiring,,,
+,,,
+Item No.,Quantity,Part Name,Source
+10,1,2 x 18650 Battery Holder,Nauvitel Electronics (Local Vendor)
+11,5,Servo Extension Cables,AliExpress
+12,-,Jumper Wires,
+,,,
+Tools and Miscellaneous,,,
+,,,
+Item No.,Quantity,Part Name,Source
+13,50,5 x 2 neodymium magnets,AliExpress
+14,1,Soldering Iron,
+15,1,Hot glue gun,
