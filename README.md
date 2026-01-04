@@ -31,20 +31,14 @@ Nean/
 ---
 
 ## 3d Models
-You can find the stl files here:
+You can find the STEP files here:
 
 ```
 Nean/
-├── 3d models/
-   └── STL files
+└──  STEP files/
 ```
-And you can find the Fusion 360 files here if you need to edit anything
+When 3d printing the models, for the fingers, only 3d print the parts that have "phalanx" at the end, the ones with "Finger" at the end are the full models of the fingers if you want to make changes. And for the arm models, print everything except the "Arm.step" file, which is the full 3d model of the arm if you want to make changes.
 
-```
-Nean/
-├── 3d models/
-   └── Fusion 360 files
-```
 Here is a preview of the 3d model:
 
 <img width="372" height="626" alt="image" src="https://github.com/user-attachments/assets/04553a1f-a402-4ba7-b1c0-51ca77cc78db" />
