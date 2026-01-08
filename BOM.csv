@@ -1,30 +1,33 @@
-ELECTRONICS,,,
-,,,
-Item No.,Quantitiy,Part Name,Source
-1,1,ESP 32,AliExpress
-2,1,PCA9685 Servo Driver,AliExpress
-3,1,DC-DC Boost Converter,AliExpress
-4,1,TP4056 Charger Module,AliExpress
-5,1,Slide Switch,Nauvitel Electronics (Local Vendor)
-6,2,18650 Li-ion Battery,Oku Electronics (Local Vendor)
-,,,
-Actuation,,,
-,,,
-Item No.,Quantity,Part Name,Source
-7,5,MG666R Servo,Alixpress
-8,1,Elastic Cord,Alixpress
-9,1,Fishing Line,Alixpress
-,,,
-Wiring,,,
-,,,
-Item No.,Quantity,Part Name,Source
-10,1,2 x 18650 Battery Holder,Nauvitel Electronics (Local Vendor)
-11,5,Servo Extension Cables,AliExpress
-12,-,Jumper Wires,
-,,,
-Tools and Miscellaneous,,,
-,,,
-Item No.,Quantity,Part Name,Source
-13,50,5 x 2 neodymium magnets,AliExpress
-14,1,Soldering Iron,
-15,1,Hot glue gun,
+Electronics,,,,,
+,,,,,
+Item No.,Quantitiy,Part Name,Source,Links,Price
+1,1,ESP 32,AliExpress,https://www.aliexpress.com/item/1005006984793820.html?spm=a2g0o.order_list.order_list_main.202.58af1802zrLLOr,$4.56
+2,1,PCA9685 Servo Driver,AliExpress,https://www.aliexpress.com/item/1005009595510490.html?spm=a2g0o.productlist.main.3.22b3xzV4xzV42O&algo_pvid=c4b47213-feb3-4312-99de-f22f4a176da4&pdp_ext_f=%7B%22order%22%3A%22395%22%2C%22spu_best_type%22%3A%22order%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005009595510490%7C_p_origin_prod%3A,$5.71
+3,1,DC-DC Buck Converter,AliExpress,https://www.aliexpress.com/item/1005007514313234.html?spm=a2g0o.productlist.main.1.58b520beq9eeQK&algo_pvid=e58fc113-209d-47c0-b8bc-d10e0dd8e0b4&pdp_ext_f=%7B%22order%22%3A%2223%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005007514313234%7C_p_origin_prod%3A,$3
+4,1,TP4056 Charger Module,AliExpress,https://www.aliexpress.com/item/1005009438302489.html?spm=a2g0o.productlist.main.6.411e2fcaedZrFF&algo_pvid=850a1d7a-29a5-42f5-98c9-2a984b4e0bbf&pdp_ext_f=%7B%22order%22%3A%22341%22%2C%22spu_best_type%22%3A%22order%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005009438302489%7C_p_origin_prod%3A,$4
+5,1,Slide Switch,Nauvitel Electronics (Local Vendor),https://nauvitel.com/product/mini-slide-switch/,$0.50
+6,2,18650 Li-ion Battery,Oku Electronics (Local Vendor),https://www.okuelectronics.com/store/prototyping/18650-2000mah-round-end-rechargeable-lithium-battery-3-7v-2pcs/,$10
+,,,,,
+Actuation,,,,,
+,,,,,
+Item No.,Quantity,Part Name,Source,Links,Price
+7,5,MG996R Servo,Alixpress,https://www.aliexpress.com/item/1005008658530145.html?spm=a2g0o.productlist.main.4.586039banh4nEr&aem_p4p_detail=20260108130153418689809203120010036899&algo_pvid=00173f49-eabc-40df-9de6-7d202d6b4401&pdp_ext_f=%7B%22order%22%3A%221185%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005008658530145%7C_p_origin_prod%3A&search_p4p_id=20260108130153418689809203120010036899_1,$25.31
+8,1,Elastic Cord (10 meters),Alixpress,https://www.aliexpress.com/item/1005008804282381.html?spm=a2g0o.order_list.order_list_main.17.22311802RSyBtt,$5.19
+9,1,Fishing Line (1.0-0.165mm-5.39LB),Alixpress,https://www.aliexpress.com/item/1005005245756703.html?spm=a2g0o.order_list.order_list_main.11.22311802RSyBtt,$2.74
+,,,,,
+Wiring,,,,,
+,,,,,
+Item No.,Quantity,Part Name,Source,Links,Price
+10,1,2 x 18650 Battery Holder,Nauvitel Electronics (Local Vendor),https://nauvitel.com/product/18650-3-7v-battery-holder-single/,$1.50
+11,5,Servo Extension Cables (300mm),AliExpress,https://www.aliexpress.com/item/32921410942.html?spm=a2g0o.productlist.main.3.11a952e7iHQMbO&algo_pvid=a326d72a-f441-42d7-aca0-296f318f8206&pdp_ext_f=%7B%22order%22%3A%22108%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A32921410942%7C_p_origin_prod%3A,$2.26
+12,-,Jumper Wires,,,
+,,,,,
+Tools and Miscellaneous,,,,,
+,,,,,
+Item No.,Quantity,Part Name,Source,Links,Price
+13,50,5 x 2 neodymium magnets,AliExpress,https://www.aliexpress.com/item/1005009966591112.html?spm=a2g0o.order_list.order_list_main.23.61741802us5kA6,$5.72
+14,1,Soldering Iron,,,
+15,1,Hot glue gun,,,
+,,,,,
+,,,,,
+,TOTAL,$70.68,,,
