@@ -45,6 +45,18 @@ Here is a preview of the 3d model:
 
 --- 
 
+## Firmware
+
+You can find the firmware files at:
+```
+Nean/
+└──  Code/
+```
+It consist of a python file that runs on yout computer and one you upload to the ESP32.
+The control system is simple, the python file checks if you hand is open or closed an sends it to the ESP32 via serial communication (I plan to change to wifi later)
+
+---
+
 ## Disclaimer
 The project is not done, I am yet to test everything together
 
