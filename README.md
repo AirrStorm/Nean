@@ -1,5 +1,5 @@
 # Nean
-A custom made 3d printed tendon driven robotic hand made to learn more about mechanical desgins and a bit of biology. It is loosely based on how the human hand actually works. It uses strings to pull the fingers open and close similar to real muscles in the palm. It uses a python script to read finger positions and controls the movement of the hand.
+A custom made 3d printed tendon driven robotic hand made to learn more about mechanical designs and a bit of biology. It is loosely based on how the human hand actually works. It uses strings to pull the fingers open and close similar to real muscles in the palm. It uses a python script to read finger positions and controls the movement of the hand.
 
 ---
 
