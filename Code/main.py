@@ -1,78 +1,208 @@
-import cv2
-import mediapipe as mp
 import serial
 import time
+import os
+os.environ["QT_QPA_PLATFORM"] = "xcb"
 
 
-SERIAL_PORT = 'COM3'     
-BAUD_RATE = 9600
-
-ser = serial.Serial(SERIAL_PORT, BAUD_RATE)
-time.sleep(2) 
-
-#MEDIAPIPE SETUP
-mp_hands = mp.solutions.hands
-hands = mp_hands.Hands(
-    max_num_hands=1,
-    min_detection_confidence=0.7,
-    min_tracking_confidence=0.7
-)
-mp_draw = mp.solutions.drawing_utils
-
-# CAMERA 
-cap = cv2.VideoCapture(0)
-
-def hand_is_open(landmarks):
-
-    fingers = []
-
-    # Thumb 
-    fingers.append(landmarks[4].x < landmarks[3].x)
-
-    # Other fingers
-    finger_tips = [8, 12, 16, 20]
-    finger_pips = [6, 10, 14, 18]
-
-    for tip, pip in zip(finger_tips, finger_pips):
-        fingers.append(landmarks[tip].y < landmarks[pip].y)
-
-    return fingers.count(True) >= 3  # 3+ fingers = OPEN
+## Import stuff
+import cv2 as cv
+import mediapipe as mp
+from mediapipe.tasks import python
+from mediapipe.tasks.python import vision
+from math import sqrt
 
 
-last_state = None
+ser = serial.Serial('/dev/ttyACM0', 115200)
 
-while True:
-    ret, frame = cap.read()
-    if not ret:
-        break
+cam = cv.VideoCapture(0)
+BaseOptions = mp.tasks.BaseOptions
+HandLandmarker = mp.tasks.vision.HandLandmarker
+HandLandmarkerOptions = mp.tasks.vision.HandLandmarkerOptions
+HandResult = mp.tasks.vision.HandLandmarkerResult
+VisionRunningMode = mp.tasks.vision.RunningMode
 
-    frame = cv2.flip(frame, 1)
-    rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    result = hands.process(rgb)
 
-    if result.multi_hand_landmarks:
-        for hand_landmarks in result.multi_hand_landmarks:
-            mp_draw.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+latest_result = None
+latest_hand = None
+latest_frame = None
 
-            if hand_is_open(hand_landmarks.landmark):
-                state = 'O'
-                cv2.putText(frame, "OPEN", (20, 50),
-                            cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+def print_result(result: HandResult, output_image: mp.Image, timestamp_ms: int): # type: ignore
+    global latest_result
+    latest_result = result
+
+def draw_landmarks(frame, result):
+    if result is None:
+        return frame
+
+    h, w, _ = frame.shape
+
+    for hand in result.hand_landmarks:
+
+        points = []
+
+        for lm in hand:
+            x = int(lm.x * w)
+            y = int(lm.y * h)
+
+            points.append((x, y))
+            cv.circle(frame, (x, y), 5, (255, 255, 0), -1)
+
+        connections = [
+            (0,1),(1,2),(2,3),(3,4),
+            (0,5),(5,6),(6,7),(7,8),
+            (5,9),(9,10),(10,11),(11,12),
+            (9,13),(13,14),(14,15),(15,16),
+            (13,17),(17,18),(18,19),(19,20),
+            (0,17)
+        ]
+
+        for c in connections:
+            cv.line(frame, points[c[0]], points[c[1]], (0, 165, 255), 3)
+
+    return frame
+
+options = HandLandmarkerOptions(
+    base_options=BaseOptions(model_asset_path='hand_landmarker.task'),
+    running_mode=VisionRunningMode.LIVE_STREAM,
+    result_callback=print_result)
+
+def get_pixel(part_name):
+    global latest_hand, latest_frame
+
+    if latest_hand is None or latest_frame is None:
+        return None
+
+    landmarks = {
+        "wrist": 0,
+
+        "thumb_mcp": 2,
+        "thumb_ip": 3,
+        "thumb_tip": 4,
+
+        "index_mcp": 5,
+        "index_pip": 6,
+        "index_dip": 7,
+        "index_tip": 8,
+
+        "middle_mcp": 9,
+        "middle_pip": 10,
+        "middle_dip": 11,
+        "middle_tip": 12,
+
+        "ring_mcp": 13,
+        "ring_pip": 14,
+        "ring_dip": 15,
+        "ring_tip": 16,
+
+        "pinky_mcp": 17,
+        "pinky_pip": 18,
+        "pinky_dip": 19,
+        "pinky_tip": 20,
+    }
+
+    idx = landmarks[part_name]
+    lm = latest_hand[idx]
+
+    h, w, _ = latest_frame.shape
+
+    x = int(lm.x * w)
+    y = int(lm.y * h)
+
+    magnitude = sqrt(x**2 + y**2)
+
+    return magnitude
+
+timestamp = 0
+
+with HandLandmarker.create_from_options(options) as landmarker:
+
+
+    while True:
+
+        ret, frame = cam.read()
+
+        if not ret:
+            print("Ass camera")
+            break
+
+
+        mp_image = mp.Image(
+            image_format=mp.ImageFormat.SRGB,
+            data=frame
+        )
+
+        frame_rgb = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+        
+        mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=frame_rgb)
+        timestamp += 1
+
+        land = landmarker.detect_async(mp_image,timestamp)
+
+            
+        latest_frame = frame
+
+        if latest_result and latest_result.hand_landmarks:
+            latest_hand = latest_result.hand_landmarks[0]
+        
+
+        finger_map = {
+            "thumb": ("thumb_tip", "thumb_ip"),
+            "index": ("index_tip", "index_pip"),
+            "middle": ("middle_tip", "middle_pip"),
+            "ring": ("ring_tip", "ring_pip"),
+            "pinky": ("pinky_tip", "pinky_pip"),
+        }
+
+        finger_states = {}
+
+        for finger, (tip_name, pip_name) in finger_map.items():
+
+            tip = get_pixel(tip_name)
+            pip = get_pixel(pip_name)
+
+            if tip is None or pip is None:
+                continue
+
+            # Thumb uses X axis
+            if finger == "thumb":
+                if tip > pip:  # Adjust direction if needed
+                    finger_states[finger] = "open"
+                else:
+                    finger_states[finger] = "closed"
+
+            # Other fingers use Y axis
             else:
-                state = 'C'
-                cv2.putText(frame, "CLOSED", (20, 50),
-                            cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+                if tip < pip:
+                    finger_states[finger] = "open"
+                else:
+                    finger_states[finger] = "closed"
 
-            # Send only if state changes
-            if state != last_state:
-                ser.write(state.encode())
-                last_state = state
+        print(finger_states)
+        # Convert to Arduino string
+        # Default state if no hand detected
+        default_state = 'open'  
+        arduino_fingers = ['index', 'middle', 'ring', 'pinky']
 
-    cv2.imshow("Robotic Hand Control", frame)
+        # Fill in missing fingers with default
+        for f in arduino_fingers:
+            if f not in finger_states:
+                finger_states[f] = default_state
 
-    if cv2.waitKey(1) & 0xFF == 27:  # ESC to quit
-        break
+        arduino_string = ",".join(f"{f}:{finger_states[f]}" for f in arduino_fingers) + "\n"
+        ser.write(arduino_string.encode())
+        print(arduino_string)
 
-cap.release()
-cv2.destroyAllWindows()
-ser.close()
+        ser.write(arduino_string.encode())
+
+        annotated = draw_landmarks(frame, latest_result)
+
+        cv.imshow("deez", annotated)
+
+        key = cv.waitKey(1)
+
+        if key == ord('q'):
+            break
+
+cam.release()
+cv.destroyAllWindows()
