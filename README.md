@@ -5,9 +5,9 @@ A custom made 3d printed tendon driven robotic hand made to learn more about mec
 
 ## 🧰 Parts Needed
 
-- ESP32
+- Arduino Uno
 - 2 18650 li-ion batteries
-- Switch 
+- Switch
 - 16-Channel 12-bit PWM/Servo Driver - PCA9685
 - 5 MG90s servos
 - Elastic Cord
