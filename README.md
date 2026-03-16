@@ -9,10 +9,10 @@ A custom made 3d printed tendon driven robotic hand made to learn more about mec
 - 2 18650 li-ion batteries
 - Switch 
 - 16-Channel 12-bit PWM/Servo Driver - PCA9685
-- 5 MG996R servos
+- 5 MG90s servos
 - Elastic Cord
 - Fishing Line
-- 18650 Charger Module Boost Converter
+- Buck Converter LM2596S
   
 ---
 
