@@ -123,7 +123,7 @@ with HandLandmarker.create_from_options(options) as landmarker:
         ret, frame = cam.read()
 
         if not ret:
-            print("Ass camera")
+            print("Camera not working")
             break
 
 
@@ -182,7 +182,7 @@ with HandLandmarker.create_from_options(options) as landmarker:
         # Convert to Arduino string
         # Default state if no hand detected
         default_state = 'open'  
-        arduino_fingers = ['index', 'middle', 'ring', 'pinky']
+        arduino_fingers = ['thumb','index', 'middle', 'ring', 'pinky']
 
         # Fill in missing fingers with default
         for f in arduino_fingers:
@@ -190,7 +190,6 @@ with HandLandmarker.create_from_options(options) as landmarker:
                 finger_states[f] = default_state
 
         arduino_string = ",".join(f"{f}:{finger_states[f]}" for f in arduino_fingers) + "\n"
-        ser.write(arduino_string.encode())
         print(arduino_string)
 
         ser.write(arduino_string.encode())
