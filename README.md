@@ -41,7 +41,7 @@ When 3d printing the models, for the fingers, only 3d print the parts that have 
 
 Here is a preview of the 3d model:
 
-<img width="372" height="626" alt="image" src="https://github.com/user-attachments/assets/04553a1f-a402-4ba7-b1c0-51ca77cc78db" />
+<img width="538" height="620" alt="image" src="https://github.com/user-attachments/assets/dc402058-e2ce-4d6b-a537-c94fd48af155" />
 
 --- 
 
