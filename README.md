@@ -58,12 +58,9 @@ You can find the firmware files at:
 Nean/
 └──  Code/
 ```
-It consist of a python file that runs on yout computer and one you upload to the ESP32.
-The control system is simple, the python file checks if you hand is open or closed an sends it to the ESP32 via serial communication (I plan to change to wifi later)
+It consist of a python file that runs on yout computer and one you upload to the Arduino.
+The control system is simple, the python file checks if you hand is open or closed an sends it to the Arduino via serial communication (I plan to change to wifi later)
 
 ---
-
-## Disclaimer
-The project is not done, I am yet to test everything together
 
 
