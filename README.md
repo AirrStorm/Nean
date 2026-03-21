@@ -35,6 +35,12 @@ You can find the STEP files here:
 
 ```
 Nean/
+└──  STEP files/
+```
+And the STL files here:
+
+```
+Nean/
 └──  STL files/
 ```
 When 3d printing the models, for the fingers, only 3d print the parts that have "phalanx" at the end, the ones with "Finger" at the end are the full models of the fingers if you want to make changes. And for the arm models, print everything except the "Arm.step" file, which is the full 3d model of the arm if you want to make changes.
