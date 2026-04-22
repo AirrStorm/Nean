@@ -1,7 +1,9 @@
 import serial
 import time
-import os
-os.environ["QT_QPA_PLATFORM"] = "xcb"
+
+#Uncomment if on Wayland
+# import os
+# os.environ["QT_QPA_PLATFORM"] = "xcb"
 
 
 ## Import stuff
